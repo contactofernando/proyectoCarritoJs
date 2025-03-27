@@ -5,13 +5,22 @@ const vaciarCarritoBtn = document.querySelector('#vaciar-carrito');
 const listaCursos = document.querySelector('#lista-cursos');
 let articulosCarrito = [];
 
+// Eventos
 cargarEventListeners();
 function cargarEventListeners() {
+
     // Cuando agregas un curso presionando "Agregar al carrito"
     listaCursos.addEventListener('click', agregarCurso);
 
     // Elimina cursos del carrito
     carrito.addEventListener('click', eliminarCurso);
+
+    // Vaciar carrito
+    vaciarCarritoBtn.addEventListener('click', () => {
+        articulosCarrito = []; // Reseteamos el arreglo
+
+        limpiarHTML(); // Eliminamos todo el HTML
+    })
 }
 // Funciones ...
 function agregarCurso(e) {
@@ -30,7 +39,7 @@ function eliminarCurso (e) {
         const cursoId = e.target.getAttribute('data-id');
 
         // Elimina del arreglo de articulosCarrito por el data-id
-        articulosCarrito = articulosCarrito.filter( curso => curso.id !==cursoId);
+        articulosCarrito = articulosCarrito.filter( curso => curso.id !== cursoId);
 
         carritoHTML(); // Iterar sobre el carrito y mostrar su HTML
     }
